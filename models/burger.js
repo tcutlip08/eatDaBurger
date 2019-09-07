@@ -1,7 +1,7 @@
-// var orm = require("../config/orm");
+var orm = require("../config/orm");
 
 // No Params
-// orm.selectAll();
+orm.selectAll();
 
 // only needs name of new burger
 // orm.insertOne("Name of Burger");

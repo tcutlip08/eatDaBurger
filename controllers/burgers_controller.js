@@ -1,17 +1,17 @@
-var burgers = require("../config/orm");
-var express = require('express');
-var app = express();
-var PORT = process.env.PORT || 3000;
+const orm = require("../config/orm");
+const express = require("express");
+const router = express.Router();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
-app.get('/', function (req, res) {
-    res.send('Welcome to the Page!');
+router.get("/", (req, res) => {
+    var burgerObj;
+    orm.selectAll(data => {
+        burgerObj = {
+            burgers: data
+        };
+        console.log(burgerObj);
+        res.render("index", burgerObj);
+    })
 });
 
-app.listen(PORT, function () {
-    console.log('App listening on PORT ' + PORT);
-});
-
-module.exports = Stuff;
+module.exports = router;

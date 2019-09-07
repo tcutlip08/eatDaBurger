@@ -1,20 +1,20 @@
-var express = require('express');
+require('dotenv').config();
+
+var express = require("express");
+var bodyParser = require("body-parser");
+var PORT = process.env.PORT || 3000;
 var app = express();
 
-var PORT = process.env.PORT || 3000;
+app.use(express.static("./public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-var con = require("./config/connection");
+var routes = require("./controllers/burgers_controller.js");
+app.use(routes);
 
-app.get('/', function (req, res) {
-    res.send('Welcome to the Page!');
-});
-// Error handler !! MAKE SURE ITS LAST !!
-app.get('*', function (req, res) {
-    res.send('<h1>Sorry we could not find what you are looking for!<h1>');
-});
 app.listen(PORT, function () {
-    console.log('App listening on PORT ' + PORT);
+    console.log("Server listening on: http://localhost:" + PORT);
 });
