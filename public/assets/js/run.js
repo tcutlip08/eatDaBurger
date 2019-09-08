@@ -1,19 +1,17 @@
 $(function () {
     $(".devour").on("click", event => {
         const id = $(event.currentTarget).data("id");
-        console.log(id);
-        console.log("fuck");
-        // const newDevour = $(event.currentTarget).data("newdevour");
-        // const newDevourState = {
-        //     devoured: newDevour
-        // }
-        // $.ajax("/api/burgers/" + id, {
-        //     type: "PUT",
-        //     data: newDevourState
-        // }).then(() => {
-        //     console.log("changed devoured to", newDevour);
-        //     location.reload();
-        // })
+        const newDevour = $(event.currentTarget).data("newdevour");
+        const newDevourState = {
+            devoured: newDevour
+        }
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: newDevourState
+        }).then(() => {
+            console.log("changed devoured to", newDevour);
+            location.reload();
+        })
     });
     $('.create-form').on('submit', event => {
         // event.preventDefault();

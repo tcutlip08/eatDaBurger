@@ -14,4 +14,11 @@ router.get("/", (req, res) => {
     })
 });
 
+router.put("/api/burgers/:id", (req, res) => {
+    orm.updateOne(req.params.id, data => {
+        res.json(data);
+    })
+    
+});
+
 module.exports = router;

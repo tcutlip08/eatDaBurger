@@ -17,8 +17,8 @@ var orm = {
             // console.log(result);
         });
     },
-    updateOne: function (newBurgerName, id) {
-        var queryString = 'UPDATE burgers SET burger_name = "' + newBurgerName + '" WHERE id = ' + id;
+    updateOne: function (id) {
+        var queryString = 'UPDATE burgers SET devoured = true WHERE id = ' + id;
         connection.query(queryString, function (err, result) {
             if (err) throw err;
             // console.log(result);
